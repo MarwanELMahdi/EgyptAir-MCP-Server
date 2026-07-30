@@ -1,0 +1,123 @@
+erDiagram
+
+    Employees {
+
+        int employee_id PK
+
+        string full_name
+
+        string email
+
+        string role
+
+        string department
+
+        string password
+
+        boolean is_active
+
+    }
+
+    Flights {
+
+        int flight_id PK
+
+        string flight_number
+
+        string origin
+
+        string destination
+
+        datetime departure_time
+
+        datetime arrival_time
+
+        string status
+
+        int delay_minutes
+
+    }
+
+    Passengers {
+
+        int passenger_id PK
+
+        string full_name
+
+        string passport_number
+
+        string email
+
+        string phone
+
+    }
+
+    Bookings {
+
+        int booking_id PK
+
+        int passenger_id FK
+
+        int flight_id FK
+
+        string seat_number
+
+        string ticket_class
+
+        string booking_status
+
+    }
+
+    CompensationRequests {
+
+        int request_id PK
+
+        int booking_id FK
+
+        double requested_amount
+
+        string reason
+
+        string status
+
+        int approved_by FK
+
+        datetime created_at
+
+    }
+
+    Policies {
+
+        int policy_id PK
+
+        string title
+
+        string content
+
+    }
+
+    Reports {
+
+        int report_id PK
+
+        int employee_id FK
+
+        string report_type
+
+        string status
+
+        int progress
+
+        datetime generated_at
+
+    }
+
+    Passengers ||--o{ Bookings : books
+
+    Flights ||--o{ Bookings : contains
+
+    Bookings ||--o{ CompensationRequests : generates
+
+    Employees ||--o{ CompensationRequests : approves
+
+    Employees ||--o{ Reports : generates

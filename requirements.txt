@@ -1,0 +1,8 @@
+mcp
+langchain
+langchain-mcp-adapters
+langchain-google-genai
+python-dotenv
+pydantic
+jsonschema
+fastmcp
