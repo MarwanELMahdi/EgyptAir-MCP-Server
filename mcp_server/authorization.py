@@ -65,7 +65,7 @@ def authorize_customer_service(employee_id: int) -> dict:
 
 def authorize_manager(employee_id: int) -> dict:
     """
-    Only Managers can approve compensation requests.
+    Only Managers and Supervisors can approve compensation requests.
     """
 
     employee = check_employee_exists(employee_id)
@@ -73,7 +73,7 @@ def authorize_manager(employee_id: int) -> dict:
     if not employee["authorized"]:
         return employee
 
-    if employee["role"] != "Manager":
+    if employee["role"] == "CustomerService":
         return {
             "authorized": False,
             "message": "Manager role required."
