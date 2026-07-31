@@ -11,7 +11,7 @@ def Fetch_resources() -> str:
            """
            SELECT
                p.policy_id , p.title , p.content
-           FROM Policies 
+           FROM Policies p
            """
        )
     policies = cursor.fetchall()
@@ -20,4 +20,12 @@ def Fetch_resources() -> str:
     if not policies:
         return json.dumps({"found": False, "message": "No policies found."})
 
-    return json.dumps(policies, indent=2)
+    result =[]
+    for policie in policies:
+        result.append ({
+            "policy_id": policie["policy_id"],
+            "title": policie["title"],
+            "content": policie["content"],
+        }
+        )
+    return result
