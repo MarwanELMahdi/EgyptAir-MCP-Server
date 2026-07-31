@@ -325,6 +325,23 @@ This improves user experience during long-running operations.
 
 ---
 
+
+
+# LLM call (gemini)
+
+MCP server is Ingerated with gemini agent and access to all listed tools
+The user type his messege to the agent then route it 
+The Agent can connect to mcp either stio or http (sse)
+Agent files could be found in /agent folder:
+    - agent.py
+    - agnet_llm.py
+for http transport could be found in 
+    - transport.py
+To switch between stio / http 
+switch the comment section in server.py
+
+---
+
 # Current Progress
 
 The following components have been completed:
@@ -346,13 +363,6 @@ The following components have been completed:
 - MCP Elicitation
 - MCP tools/list_changed notification
 - MCP Progress Tracking
-
----
-
-# Remaining Work
-
-The following protocol features are still under development:
-
 - Capability Negotiation
 - Resources
 - Prompts
@@ -360,6 +370,10 @@ The following protocol features are still under development:
 - Streamable HTTP Transport
 - Agent Integration
 - Final Demonstration
+
+---
+
+
 
 ---
 
