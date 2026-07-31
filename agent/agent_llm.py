@@ -122,6 +122,12 @@ class MCPGeminiClient:
                         "description": tool.description,
                         "parameters": cleaned_params
                     })
+                policy_resource = await session.read_resource("sql://policies")
+                policy_text = policy_resource.contents[0].text
+                system_instruction= (
+                "You are an EgyptAir customer service assistant.\n"
+                "Refer to the following official company policies when passenger request it:\n\n"
+                f"{policy_text}")
 
                 # Wrap tools into Google GenAI Tool declaration
                 gemini_tools = [types.Tool(function_declarations=function_declarations)] if function_declarations else []
@@ -148,6 +154,7 @@ class MCPGeminiClient:
                         model=MODEL_ID,
                         contents=chat_history,
                         config=types.GenerateContentConfig(
+                             system_instruction=system_instruction,
                             tools=gemini_tools
                         )
                     )

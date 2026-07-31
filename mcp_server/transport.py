@@ -75,6 +75,7 @@ class MCPGeminiClient:
                 mcp_tools = await session.list_tools()
                 function_declarations = []
                 for tool in mcp_tools.tools:
+                    print(f" - {tool.name}: {tool.description[:60]}...")
                     function_declarations.append({
                         "name": tool.name,
                         "description": tool.description,
