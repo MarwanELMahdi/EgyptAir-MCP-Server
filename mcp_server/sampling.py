@@ -19,8 +19,7 @@ async def draft_passenger_email(booking_id: int, ctx: Context) -> str:
 
     cursor.execute("""
         SELECT 
-            p.first_name, 
-            p.last_name, 
+            p.full_name, 
             f.flight_number, 
             f.status, 
             f.delay_minutes,
@@ -40,7 +39,7 @@ async def draft_passenger_email(booking_id: int, ctx: Context) -> str:
         return f"Error: Booking ID {booking_id} not found in database."
 
     # 3. Construct prompt context for the client LLM
-    passenger_name = f"{booking_data['first_name']} {booking_data['last_name']}"
+    passenger_name = f"{booking_data['full_name']} "
     flight_number = booking_data['flight_number']
     status = booking_data['status']
     delay_minutes = booking_data['delay_minutes']

@@ -24,7 +24,11 @@ def draft_passenger_delay_email(
         f"- Reason: {reason}\n\n"
         f"Include information on next steps and express gratitude for their patience."
     )
-    
-    return [
+    try:
+        return [
         UserMessage(content=f"[SYSTEM INSTRUCTION]: {system_instruction}\n\n{user_request}")
     ]
+    except Exception as e:
+        return (
+            f"Raw Error: {str(e)}"
+        )
